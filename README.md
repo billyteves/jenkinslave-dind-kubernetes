@@ -9,10 +9,16 @@ and [`jenkinsci/docker-jnlp-slave`](https://github.com/jenkinsci/docker-jnlp-sla
 Docker-in-Docker: Credits to Jerome Petazzoni [`jpetazzo/dind`](https://github.com/jpetazzo/dind)
 
 ## Purpose
-The main purpose of the creation of this image is to be able to create a jenkins slave on-demand triggered by the Kubernetes Plugin. The kubernetes plugin will create multiple kubernetes environment variables that will be use by the Jenkins Remoting Tool and connect to Jenkins Master via JNLP connection.
+The main purpose of the creation of this image is to be able to create a jenkins slave on-demand triggered by the Jenkins Kubernetes Plugin. The kubernetes plugin will create multiple kubernetes environment variables that will be use by the Jenkins Remoting Tool and connect to Jenkins Master via JNLP connection.
 
 ### Docker-in-Docker
 As a jenkins-slave, SCM is part of the process. Each code repositories should be able to build images. Based on their Jenkinsfile or on the Pipeline script, the ability to build and test the image before pushing to a private/public docker registry.
+
+### Additional Tools Included
+* GIT
+* Kubectl
+* Docker Compose
+* JRE
 
 ## Configuration Specifics
 
