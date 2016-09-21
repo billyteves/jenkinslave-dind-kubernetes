@@ -14,6 +14,9 @@ The main purpose of the creation of this image is to be able to create a jenkins
 ### Docker-in-Docker
 As a jenkins-slave, SCM is part of the process. Each code repositories should be able to build images. Based on their Jenkinsfile or on the Pipeline script, the ability to build and test the image before pushing to a private/public docker registry.
 
+### Kubectl
+If the build image passed the testing, deployed to docker registry, The jenkinslave-dind-kubernetes should be able to deploy the created image using the `kubectl` command line interface.
+
 ### Additional Tools Included
 * GIT
 * Kubectl
