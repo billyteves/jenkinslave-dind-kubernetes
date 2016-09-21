@@ -1,0 +1,57 @@
+#!/bin/bash
+
+#######################################################################################################################################################
+# This script is b mash-up of Carlossg's jenkins-slave-docker <https://github.com/carlossg/jenkins-slave-docker>                                 
+# and Jenkinsci's docker-jnlp-slave <https://github.com/jenkinsci/docker-jnlp-slave>
+# 
+# I made some modification based on what I needed. I do not own the scripts. Credits to the authors.
+# This script is compatible with the Kubernetes Plugin. 
+# Same environment variables being pass by the Kubernetes Plugin to be able to able to create a connection and become a slave of the Jenkins Master
+#
+# Usage jenkins-slave.sh [options] -url http://jenkins SECRET SLAVE_NAME
+#
+# if `docker run` has 2 or more arguments the user is passing jenkins launcher arguments
+#
+# By default, JnlpProtocol3 is disabled due to the known stability and scalability issues. 
+# You can enable this protocol on your own risk using the JNLP_PROTOCOL_OPTS=-Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=false property.
+#######################################################################################################################################################
+
+/etc/init.d/docker start && 
+
+
+if [[ $# -gt 1 ]]; then
+
+  # jenkins slave
+  JAR=`ls -1 /usr/share/jenkins/remoting-*.jar | tail -n 1`
+
+  PARAMS=""
+
+  # if -url is not provided try env vars
+  if [[ "$@" != *"-url "* ]]; then
+    if [ ! -z "$JENKINS_URL" ]; then
+      PARAMS="$PARAMS -url $JENKINS_URL"
+    elif [ ! -z "$JENKINS_SERVICE_HOST" ] && [ ! -z "$JENKINS_SERVICE_PORT" ]; then
+      PARAMS="$PARAMS -url http://$JENKINS_SERVICE_HOST:$JENKINS_SERVICE_PORT"
+    fi
+  fi
+
+  # if -tunnel is not provided try env vars
+  if [[ "$@" != *"-tunnel "* ]]; then
+    if [ ! -z "$JENKINS_TUNNEL" ]; then
+      PARAMS="$PARAMS -tunnel $JENKINS_TUNNEL"
+    elif [ ! -z "$JENKINS_SLAVE_SERVICE_HOST" ] && [ ! -z "$JENKINS_SLAVE_SERVICE_PORT" ]; then
+      PARAMS="$PARAMS -tunnel $JENKINS_SLAVE_SERVICE_HOST:$JENKINS_SLAVE_SERVICE_PORT"
+    fi
+  fi
+
+  if [ -z "$JNLP_PROTOCOL_OPTS" ]; then
+    echo "Warning: JnlpProtocol3 is disabled by default, use JNLP_PROTOCOL_OPTS to alter the behavior"
+    JNLP_PROTOCOL_OPTS="-Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=true"
+  fi
+
+  echo Running java $JAVA_OPTS -cp $JAR hudson.remoting.jnlp.Main -headless $PARAMS "$@"
+  exec java $JAVA_OPTS $JNLP_PROTOCOL_OPTS -cp $JAR hudson.remoting.jnlp.Main -headless $PARAMS "$@"
+fi
+
+# As argument is not jenkins, assume user want to run his own process, for sample a `bash` shell to explore this image
+exec "$@"
