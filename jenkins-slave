@@ -1,19 +1,21 @@
 #!/bin/bash
 
 #######################################################################################################################################################
-# This script is b mash-up of Carlossg's jenkins-slave-docker <https://github.com/carlossg/jenkins-slave-docker>                                 
+# This script is a mash-up of Carlossg's jenkins-slave-docker <https://github.com/carlossg/jenkins-slave-docker>                                 
 # and Jenkinsci's docker-jnlp-slave <https://github.com/jenkinsci/docker-jnlp-slave>
 # 
 # I made some modification based on what I needed. I do not own the scripts. Credits to the authors.
-# This script is compatible with the Kubernetes Plugin. 
-# Same environment variables being pass by the Kubernetes Plugin to be able to able to create a connection and become a slave of the Jenkins Master
+# This script is compatible with the Jenkins Kubernetes Plugin. 
+# Same environment variables being pass by the Jenkins Kubernetes Plugin 
+#   to be able to create a connection and become a slave of the Jenkins Master
 #
 # Usage jenkins-slave.sh [options] -url http://jenkins SECRET SLAVE_NAME
 #
 # if `docker run` has 2 or more arguments the user is passing jenkins launcher arguments
 #
 # By default, JnlpProtocol3 is disabled due to the known stability and scalability issues. 
-# You can enable this protocol on your own risk using the JNLP_PROTOCOL_OPTS=-Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=false property.
+# You can enable this protocol on your own risk using:
+#    `JNLP_PROTOCOL_OPTS=-Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=false`  property.
 #######################################################################################################################################################
 
 /etc/init.d/docker start && 
