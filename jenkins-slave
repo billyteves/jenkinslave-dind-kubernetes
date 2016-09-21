@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#######################################################################################################################################################
+#####################################################################################################################
 # This script is a mash-up of Carlossg's jenkins-slave-docker <https://github.com/carlossg/jenkins-slave-docker>                                 
 # and Jenkinsci's docker-jnlp-slave <https://github.com/jenkinsci/docker-jnlp-slave>
 # 
@@ -16,7 +16,7 @@
 # By default, JnlpProtocol3 is disabled due to the known stability and scalability issues. 
 # You can enable this protocol on your own risk using:
 #    `JNLP_PROTOCOL_OPTS=-Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=false`  property.
-#######################################################################################################################################################
+#####################################################################################################################
 
 /etc/init.d/docker start && 
 
