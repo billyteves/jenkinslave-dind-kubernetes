@@ -1,5 +1,11 @@
 # jenkinslave-dind-kubernetes
 
+Image Layer
+[![](https://images.microbadger.com/badges/version/billyteves/jenkinslave-dind-kubernetes.svg)](https://microbadger.com/images/billyteves/jenkinslave-dind-kubernetes "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/billyteves/jenkinslave-dind-kubernetes.svg)](https://microbadger.com/images/billyteves/jenkinslave-dind-kubernetes "Get your own image badge on microbadger.com")
+
+Docker Hub
+    docker pull billyteves/jenkinslave-dind-kubernetes
+
 A Docker Image which has a capability to run docker inside and is compatible with the Jenkins Kubernetes Plugin.
 This Docker Image can be used as a Jenkins slave or a simple development container image.
 
