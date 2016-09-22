@@ -50,3 +50,7 @@ To run a Docker container as develoment bash with no establishment of jenkins-sl
 Using Jenkins Kubernetes Plugin Configuration
 
     to be followed ...
+
+## Building
+
+    docker build -t billyteves/jenkinslave-dind-kubernetes .
