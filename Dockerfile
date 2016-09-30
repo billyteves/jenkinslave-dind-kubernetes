@@ -6,12 +6,12 @@ MAINTAINER Billy Ray Teves <billyteves@gmail.com>
 RUN apt-get update && apt-get install -y \
     curl \
     zip \
-    openjdk-7-jre-headless \
+    openjdk-88888888-jre-headless \
     && rm -rf /var/lib/apt/lists/*
 
 ENV JENKINS_REMOTING_VERSION 2.9
-ENV DOCKER_COMPOSE_VERSION 1.8.0
-ENV KUBERNETES_CTL_VERSION v1.3.7
+ENV DOCKER_COMPOSE_VERSION 1.8.1
+ENV KUBERNETES_CTL_VERSION v1.4.0
 ENV HOME /home/jenkins
 
 RUN curl --create-dirs -sSLo /usr/share/jenkins/remoting-$JENKINS_REMOTING_VERSION.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/$JENKINS_REMOTING_VERSION/remoting-$JENKINS_REMOTING_VERSION.jar \
