@@ -1,4 +1,4 @@
-FROM jpetazzo/dind
+FROM billyteves/ubuntu-dind
 
 MAINTAINER Billy Ray Teves <billyteves@gmail.com>
 
@@ -6,7 +6,7 @@ MAINTAINER Billy Ray Teves <billyteves@gmail.com>
 RUN apt-get update && apt-get install -y \
     curl \
     zip \
-    openjdk-7-jre-headless \
+    openjdk-8-jre-headless \
     && rm -rf /var/lib/apt/lists/*
 
 ENV JENKINS_REMOTING_VERSION 2.9
