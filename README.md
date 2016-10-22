@@ -21,11 +21,16 @@ As a jenkins-slave, SCM is part of the process. Each code repositories should be
 ### Kubectl
 If the build image passed the testing and deployed to docker registry, the jenkinslave-dind-kubernetes should be able to deploy the created image using the kubectl command line interface (if invoked in Jenkinsfile or in Pipeline script).
 
+### Operating System
+* Ubuntu 16.04
+
 ### Additional Tools Included
 * GIT
 * Kubectl
 * Docker Compose
 * JRE
+* AWS CLI Tool
+* Python with PIP
 
 ## Configuration Specifics
 
