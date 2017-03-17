@@ -1,7 +1,5 @@
 # jenkinslave-dind-kubernetes
 
-[![](https://images.microbadger.com/badges/version/billyteves/jenkinslave-dind-kubernetes.svg)](https://microbadger.com/images/billyteves/jenkinslave-dind-kubernetes "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/billyteves/jenkinslave-dind-kubernetes.svg)](https://microbadger.com/images/billyteves/jenkinslave-dind-kubernetes "Get your own image badge on microbadger.com")
-
     docker pull billyteves/jenkinslave-dind-kubernetes
 
 A Docker Image which has a capability to run docker inside and is compatible with the Jenkins Kubernetes Plugin.
@@ -25,13 +23,13 @@ If the build image passed the testing and deployed to docker registry, the jenki
 * Ubuntu 16.04
 
 ### Additional Tools Included
-* GIT
-* Kubectl
-* Docker Compose
-* JRE
-* AWS CLI Tool
-* Python with PIP
-
+* GIT 2.7.4
+* Kubectl v1.4.0
+* Docker Compose 1.8.1
+* JAVA with OpenJDK 9
+* AWS CLI Tool 1.11.8
+* Python 2.7.12
+* PIP 8.1.2
 ## Configuration Specifics
 
 By default, JnlpProtocol3 is disabled due to the known stability and scalability issues.
