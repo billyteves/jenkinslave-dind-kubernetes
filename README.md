@@ -24,12 +24,13 @@ If the build image passed the testing and deployed to docker registry, the jenki
 
 ### Additional Tools Included
 * GIT 2.7.4
-* Kubectl v1.4.0
-* Docker Compose 1.8.1
+* Kubectl v1.5.4
+* Docker CE 17.03.0-ce, build 60ccb22
+* Docker Compose 1.11.2
 * JAVA with OpenJDK 9
 * AWS CLI Tool 1.11.8
 * Python 2.7.12
-* PIP 8.1.2
+* PIP 9.0.1
 ## Configuration Specifics
 
 By default, JnlpProtocol3 is disabled due to the known stability and scalability issues.

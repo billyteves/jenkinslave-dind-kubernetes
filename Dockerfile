@@ -1,4 +1,4 @@
-FROM billyteves/ubuntu-dind
+FROM billyteves/ubuntu-dind:16.04
 
 MAINTAINER Billy Ray Teves <billyteves@gmail.com>
 
@@ -11,13 +11,12 @@ RUN apt-get update \
     python \
     python-pip \
     openjdk-9-jre-headless \
-    && rm -rf /var/lib/apt/lists/* \
     && pip install --upgrade pip \
     && pip install awscli 
 
-ENV JENKINS_REMOTING_VERSION 2.9
-ENV DOCKER_COMPOSE_VERSION 1.8.1
-ENV KUBERNETES_CTL_VERSION v1.4.0
+ENV JENKINS_REMOTING_VERSION 3.7
+ENV DOCKER_COMPOSE_VERSION 1.11.2
+ENV KUBERNETES_CTL_VERSION v1.5.4
 ENV HOME /home/jenkins
 
 ADD jenkins-slave /usr/local/bin/jenkins-slave
@@ -30,7 +29,10 @@ RUN curl --create-dirs -sSLo /usr/share/jenkins/remoting-$JENKINS_REMOTING_VERSI
     && chmod +x /usr/local/bin/kubectl \
     && chmod +x /tmp/dockerconfig \
     && ln -s /tmp/dockerconfig /usr/local/bin/dockerconfig \
-    && chmod 755 /usr/share/jenkins
+    && chmod 755 /usr/share/jenkins \
+    && apt-get autoremove \
+    && apt-get autoclean \
+    && rm -rf /var/lib/apt/lists/* 
 
 VOLUME /home/jenkins
 
