@@ -12,9 +12,7 @@ RUN apt-get update \
     python-pip \
     openjdk-9-jre-headless \
     && pip install --upgrade pip \
-    && pip install awscli \
-    && apt-get remove --purge -y $BUILD_PACKAGES $(apt-mark showauto) \
-    && rm -rf /var/lib/apt/lists/* \ 
+    && pip install awscli 
 
 ENV JENKINS_REMOTING_VERSION 3.7
 ENV DOCKER_COMPOSE_VERSION 1.11.2
@@ -31,7 +29,8 @@ RUN curl --create-dirs -sSLo /usr/share/jenkins/remoting-$JENKINS_REMOTING_VERSI
     && chmod +x /usr/local/bin/kubectl \
     && chmod +x /tmp/dockerconfig \
     && ln -s /tmp/dockerconfig /usr/local/bin/dockerconfig \
-    && chmod 755 /usr/share/jenkins
+    && chmod 755 /usr/share/jenkins \
+    && rm -rf /var/lib/apt/lists/* 
 
 VOLUME /home/jenkins
 
