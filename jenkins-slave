@@ -18,8 +18,8 @@
 #    `JNLP_PROTOCOL_OPTS=-Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=false`  property.
 #####################################################################################################################
 
-/etc/init.d/docker start && 
-
+#/etc/init.d/docker start && 
+/usr/local/bin/wrapdocker
 
 if [[ $# -gt 1 ]]; then
 

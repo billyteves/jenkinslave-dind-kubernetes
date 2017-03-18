@@ -1,4 +1,4 @@
-FROM billyteves/ubuntu-dind
+FROM billyteves/ubuntu-dind:16.04
 
 MAINTAINER Billy Ray Teves <billyteves@gmail.com>
 
@@ -11,13 +11,14 @@ RUN apt-get update \
     python \
     python-pip \
     openjdk-9-jre-headless \
-    && rm -rf /var/lib/apt/lists/* \
     && pip install --upgrade pip \
-    && pip install awscli 
+    && pip install awscli \
+    && apt-get remove --purge -y $BUILD_PACKAGES $(apt-mark showauto) \
+    && rm -rf /var/lib/apt/lists/* \ 
 
-ENV JENKINS_REMOTING_VERSION 2.9
-ENV DOCKER_COMPOSE_VERSION 1.8.1
-ENV KUBERNETES_CTL_VERSION v1.4.0
+ENV JENKINS_REMOTING_VERSION 3.7
+ENV DOCKER_COMPOSE_VERSION 1.11.1
+ENV KUBERNETES_CTL_VERSION v1.5.4
 ENV HOME /home/jenkins
 
 ADD jenkins-slave /usr/local/bin/jenkins-slave
