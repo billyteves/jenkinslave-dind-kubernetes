@@ -30,6 +30,8 @@ RUN curl --create-dirs -sSLo /usr/share/jenkins/remoting-$JENKINS_REMOTING_VERSI
     && chmod +x /tmp/dockerconfig \
     && ln -s /tmp/dockerconfig /usr/local/bin/dockerconfig \
     && chmod 755 /usr/share/jenkins \
+    && apt-get autoremove \
+    && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* 
 
 VOLUME /home/jenkins
