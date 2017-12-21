@@ -1,6 +1,6 @@
 # jenkinslave-dind-kubernetes
 
-    docker pull billyteves/jenkinslave-dind-kubernetes
+    docker pull billyteves/jenkinslave-dind-kubernetes:<tag>
 
 A Docker Image which has a capability to run docker inside and is compatible with the Jenkins Kubernetes Plugin.
 This Docker Image can be used as a Jenkins slave or a simple development container image.
@@ -9,6 +9,8 @@ The `jenkins-slave` script used is a mash-up of [`carlossg/jenkins-slave-docker`
 and [`jenkinsci/docker-jnlp-slave`](https://github.com/jenkinsci/docker-jnlp-slave)
 
 Docker-in-Docker: Credits to Jerome Petazzoni [`jpetazzo/dind`](https://github.com/jpetazzo/dind)
+
+Docker Hub: https://hub.docker.com/r/billyteves/jenkinslave-dind-kubernetes
 
 ## Purpose
 The main purpose of the creation of this image is to be able to create a jenkins slave on-demand triggered by the Jenkins Kubernetes Plugin. The kubernetes plugin will create multiple kubernetes environment variables that will be use by the Jenkins Remoting Tool and connect to Jenkins Master via JNLP connection.
@@ -23,14 +25,15 @@ If the build image passed the testing and deployed to docker registry, the jenki
 * Ubuntu 16.04
 
 ### Additional Tools Included
-* GIT 2.7.4
-* Kubectl v1.5.4
-* Docker CE 17.03.0-ce, build 60ccb22
-* Docker Compose 1.11.2
-* JAVA with OpenJDK 9
-* AWS CLI Tool 1.11.8
+* Jenkins Remoting Tool 3.14
+* Git 2.7.4
+* Kubectl v1.9.0
+* Docker CE 17.11.0-ce, build 1caf76c (with multi-stage support)
+* Docker Compose 1.18.0, build 8dd22a9
+* Java with OpenJDK 9
+* AWS CLI Tool 1.14.14
 * Python 2.7.12
-* PIP 9.0.1
+* Pip 9.0.1
 ## Configuration Specifics
 
 By default, JnlpProtocol3 is disabled due to the known stability and scalability issues.
@@ -53,7 +56,7 @@ including Kubernetes set variables for services `jenkins` and `jenkins-slave`.
 
 To run a Docker container as develoment bash with no establishment of jenkins-slave connection:
 
-    docker run --privileged billyteves/jenkinslave-dind-kubernetes bash
+    docker run --privileged billyteves/jenkinslave-dind-kubernetes:<tag> bash
 
 Using Jenkins Kubernetes Plugin Configuration
 
