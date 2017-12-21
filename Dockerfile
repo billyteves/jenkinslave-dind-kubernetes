@@ -7,16 +7,17 @@ RUN apt-get update \
     && apt-get -y upgrade \
     && apt-get install -y \
     curl \
-    zip \
+    git \
     python \
     python-pip \
+    zip \
     openjdk-9-jre-headless \
     && pip install --upgrade pip \
     && pip install awscli 
 
-ENV JENKINS_REMOTING_VERSION 3.7
-ENV DOCKER_COMPOSE_VERSION 1.11.2
-ENV KUBERNETES_CTL_VERSION v1.5.4
+ENV JENKINS_REMOTING_VERSION 3.14
+ENV DOCKER_COMPOSE_VERSION 1.18.0
+ENV KUBERNETES_CTL_VERSION v1.9.0
 ENV HOME /home/jenkins
 
 ADD jenkins-slave /usr/local/bin/jenkins-slave
